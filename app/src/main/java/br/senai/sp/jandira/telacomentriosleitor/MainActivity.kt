@@ -1,5 +1,4 @@
-package br.senai.sp.jandira.telacomentriosleitor
-
+package br.senai.sp.jandira.telacriarnota
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -41,6 +40,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -56,376 +56,378 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import br.senai.sp.jandira.telacomentriosleitor.ui.theme.TelaComentáriosLeitorTheme
+import br.senai.sp.jandira.telacriarnota.R
+import br.senai.sp.jandira.telacriarnota.ui.theme.TelaCriarNotaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TelaComentáriosLeitorTheme {
-                    Greeting()
+            TelaCriarNotaTheme {
+                telaCriarNota()
             }
         }
     }
 }
 
 @Composable
-fun Greeting() {
+fun telaCriarNota() {
 
-        val nota by remember { mutableStateOf("") }
+    var nota by remember { mutableStateOf("") }
 
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+    ) {
+        Box(
             modifier = Modifier
-                .fillMaxSize()
+                .height(95.dp)
+                .fillMaxWidth()
+                .background(
+                    Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFF213787),
+                            Color(0xFF245FB0),
+                            Color(0xFF6E96E8)
+                        )
+                    ),
+                )
         ) {
-            Box(
+            Row(
                 modifier = Modifier
-                    .height(70.dp)
+                    .padding(12.dp)
                     .fillMaxWidth()
-                    .background(
-                        Brush.horizontalGradient(
-                            colors = listOf(
-                                Color(0xFF213787),
-                                Color(0xFF245FB0),
-                                Color(0xFF6E96E8)
-                            )
-                        ),
-                    )
+                    .fillMaxHeight(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Row(
+
+                Image(
+                    painter = painterResource(id = R.drawable.logo2),
+                    contentDescription = "",
                     modifier = Modifier
-                        .padding(12.dp)
-                        .fillMaxWidth()
-                        .fillMaxHeight(),
+                        .height(60.dp)
+                        .width(60.dp)
+                )
+                Text(
+                    text = "CRIAR NOTA",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Medium
+                )
+                Card(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .border(4.dp, Color(0xFF9DBFEF), RoundedCornerShape(30.dp)),
+                    shape = RoundedCornerShape(100.dp),
+                ) {
+
+                }
+            }
+
+        }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFFC3D9FF),
+                            Color(0xFFC3D9FF),
+                            Color(0xFFC3D9FF),
+                            Color(0xFFC3D9FF),
+                            Color(0xFF9BBAF5),
+                            Color(0xFF1B55CD),
+                        )
+                    ),
+                ),
+            shape = RoundedCornerShape(0.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+        ) {
+            Column {
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(625.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
-                    Image(
-                        painter = painterResource(id = R.drawable.logo2),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .height(60.dp)
-                            .width(60.dp)
-                    )
-                    Text(
-                        text = "CRIAR NOTA",
-                        fontSize = 20.sp,
-                        color = Color.White,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Card(
-                        modifier = Modifier
-                            .size(50.dp)
-                            .border(4.dp, Color(0xFF9DBFEF), RoundedCornerShape(30.dp)),
-                        shape = RoundedCornerShape(100.dp),
+                    IconButton(
+                        onClick = { },
+                        modifier = Modifier.padding(start = 16.dp)
                     ) {
 
                     }
-                }
 
-            }
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(630.dp)
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(
-                                Color(0xFFC3D9FF),
-                                Color(0xFFC3D9FF),
-                                Color(0xFFC3D9FF),
-                                Color(0xFFC3D9FF),
-                                Color(0xFF9BBAF5),
-                                Color(0xFF1B55CD),
-                            )
-                        ),
-                    ),
-                shape = RoundedCornerShape(0.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.Transparent)
-            ) {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().height(500.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+
+                    Box(
+                        modifier = Modifier
+                            .height(700.dp)
+                            .fillMaxWidth(0.7f)
                     ) {
-                        IconButton(
-                            onClick = {  },
-                            modifier = Modifier.padding(start = 16.dp)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.ArrowBack,
-                                contentDescription = "Voltar",
-                                tint = Color(0xFF213787),
-                                modifier = Modifier.size(48.dp)
-                            )
-                        }
-
-
-                        Box(
+                        Card(
                             modifier = Modifier
-                                .height(700.dp)
-                                .fillMaxWidth(0.7f)
+                                .height(255.dp)
+                                .width(276.dp)
+                                .align(Alignment.Center)
+                                .offset(x = -10.dp)
+                                .graphicsLayer {
+                                    rotationZ = -10f
+                                }
+                                .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
+                            shape = RoundedCornerShape(30.dp),
+                            colors = CardDefaults.cardColors(Color(0xFFBCDDFF))
                         ) {
                             Card(
                                 modifier = Modifier
-                                    .height(255.dp)
-                                    .width(276.dp)
-                                    .align(Alignment.Center)
-                                    .offset(x = -10.dp)
-                                    .graphicsLayer {
-                                        rotationZ = -10f
-                                    }
-                                    .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
-                                shape = RoundedCornerShape(30.dp),
-                                colors = CardDefaults.cardColors(Color(0xFFBCDDFF))
+                                    .fillMaxHeight()
+                                    .width(210.dp)
+                                    .align(Alignment.End),
+                                colors = CardDefaults.cardColors(Color(0xFF90C6FF))
                             ) {
-                                Card(
-                                    modifier = Modifier
-                                        .fillMaxHeight()
-                                        .width(210.dp)
-                                        .align(Alignment.End),
-                                    colors = CardDefaults.cardColors(Color(0xFF90C6FF))
-                                ) {
 
+                            }
+                        }
+                        Card(
+                            modifier = Modifier
+                                .height(250.dp)
+                                .width(280.dp)
+                                .align(Alignment.Center)
+                                .offset(y = 20.dp, x = 25.dp)
+                                .graphicsLayer {
+                                    rotationZ = -12f
                                 }
-                            }
-                            Card(
+                                .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
+                            shape = RoundedCornerShape(30.dp),
+                            colors = CardDefaults.cardColors(Color(0xFFFFFFD2))
+                        ) {
+
+                        }
+                        Card(
+                            modifier = Modifier
+                                .height(260.dp)
+                                .width(290.dp)
+                                .align(Alignment.Center)
+                                .offset(y = -15.dp, x = 10.dp)
+                                .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
+                            shape = RoundedCornerShape(30.dp),
+                            colors = CardDefaults.cardColors(Color(0xFFFFFFFF))
+                        ) {
+                            Box(
                                 modifier = Modifier
-                                    .height(250.dp)
-                                    .width(280.dp)
-                                    .align(Alignment.Center)
-                                    .offset(y = 20.dp,  x = 25.dp)
-                                    .graphicsLayer {
-                                        rotationZ = -12f
-                                    }
-                                    .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
-                                shape = RoundedCornerShape(30.dp),
-                                colors = CardDefaults.cardColors(Color(0xFFFFFFD2))
+                                    .fillMaxHeight().padding(start = 20.dp, end = 20.dp),
+                                contentAlignment = Alignment.Center
                             ) {
 
-                            }
-                            Card(
-                                modifier = Modifier
-                                    .height(260.dp)
-                                    .width(290.dp)
-                                    .align(Alignment.Center)
-                                    .offset(y = -15.dp, x = 10.dp)
-                                    .border(4.dp, Color(0xFF020075), RoundedCornerShape(20.dp)),
-                                shape = RoundedCornerShape(30.dp),
-                                colors = CardDefaults.cardColors(Color(0xFFFFFFFF))
-                            ) {
-                                Box(
+
+
+                                BasicTextField(
+                                    value = nota,
+                                    onValueChange = { novaNota ->
+                                        nota = novaNota
+                                    },
                                     modifier = Modifier
-                                        .fillMaxHeight().padding(start = 20.dp, end = 20.dp)
-                                    ,
-                                    contentAlignment = Alignment.Center
-                                ) {
-
-                                    BasicTextField(
-                                        value = nota,
-                                        onValueChange = { /* ação ao mudar o valor */ },
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .background(Color.Transparent), // Define o fundo como transparente
-                                        decorationBox = { innerTextField ->
-                                            if (nota.isEmpty()) {
-                                                Text("Digite sua nota aqui...", color = Color.Gray)
-                                            }
-                                            innerTextField() // Insere o campo de texto
+                                        .fillMaxWidth()
+                                        .background(Color.Transparent),
+                                    decorationBox = { innerTextField ->
+                                        if (nota.isEmpty()) {
+                                            Text("Digite sua nota aqui...", color = Color.Gray)
                                         }
-                                    )
-
-                                }
-                            }
-
-
-                            Image(
-                                painter = painterResource(id = R.drawable.macalmeanotando),
-                                contentDescription = "",
-                                modifier = Modifier.size(150.dp).zIndex(12f).offset(y = 27.dp, x = -32.dp),
-                            )
-                            Card (
-                                modifier = Modifier.height(55.dp).width(55.dp).offset(y = 97.dp, x = 195.dp)
-                                    .border(3.dp, Color(0xFF020075), RoundedCornerShape(30.dp)),
-                                RoundedCornerShape(30.dp)
-                            ){
-
+                                        innerTextField()
+                                    }
+                                )
                             }
                         }
 
-
-
-                        IconButton(
-                            onClick = {  },
+                        Image(
+                            painter = painterResource(id = R.drawable.macalmeanotando),
+                            contentDescription = "",
+                            modifier = Modifier.size(150.dp).zIndex(12f)
+                                .offset(y = 90.dp, x = -32.dp),
+                        )
+                        Card(
+                            modifier = Modifier.height(55.dp).width(55.dp)
+                                .offset(y = 150.dp, x = 210.dp)
+                                .border(3.dp, Color(0xFF020075), RoundedCornerShape(30.dp)),
+                            RoundedCornerShape(30.dp)
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.ArrowForward,
-                                contentDescription = "Avançar",
-                                tint = Color(0xFF213787),
-                                modifier = Modifier.size(48.dp)
-                            )
-                        }
 
-                    }
-                    Row (
-                        modifier = Modifier.fillMaxWidth().height(100.dp),
-                        horizontalArrangement = Arrangement.SpaceAround,
-                        verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Button(
-                            colors = ButtonDefaults.buttonColors(Color(0xFFFFFFF5)),
-                            onClick = {}, modifier = Modifier
-                                .height(50.dp)
-                                .width(160.dp).border(2.dp, Color(0xFF020075), RoundedCornerShape(5.dp)),
-                            shape = RoundedCornerShape(7.dp))
-
-                        {
-                            Text(
-                                text = "Descartar",
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                                color = Color(0xFF1252AF),
-                                fontSize = 15.sp
-                            )
-
-                        }
-
-
-
-                        Button(
-                            colors = ButtonDefaults.buttonColors(Color(0xFF213787)),
-                            onClick = {}, modifier = Modifier
-                                .height(50.dp)
-                                .width(160.dp),
-                            shape = RoundedCornerShape(7.dp))
-
-                        {
-                            Text(
-                                text = "Postar nota",
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 15.sp
-                            )
                         }
                     }
+
+
+
+
+                    IconButton(
+                        onClick = { },
+                    ) {
+
+                    }
+
                 }
-
-            }
-
-            Box(
-                modifier = Modifier
-                    .height(70.dp)
-                    .fillMaxWidth()
-                    .background(
-                        Brush.horizontalGradient(
-                            colors = listOf(
-                                Color(0xFF213787),
-                                Color(0xFF245FB0),
-                                Color(0xFF6E96E8)
-                            )
-                        ),
-                    )
-            ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    modifier = Modifier.fillMaxWidth().height(100.dp),
+                    horizontalArrangement = Arrangement.SpaceAround,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Button(
-                        onClick = {
+                        colors = ButtonDefaults.buttonColors(Color(0xFFFFFFF5)),
+                        onClick = {}, modifier = Modifier
+                            .height(50.dp)
+                            .width(160.dp)
+                            .border(2.dp, Color(0xFF020075), RoundedCornerShape(5.dp)),
+                        shape = RoundedCornerShape(7.dp)
+                    )
 
-                        },
-                        modifier = Modifier
-                            .size(72.dp)
-                            .background(Color.Transparent),
-                        colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.calendarioicon),
-                            contentDescription = "",
-                            modifier = Modifier.size(60.dp)
+                    {
+                        Text(
+                            text = "Descartar",
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF1252AF),
+                            fontSize = 15.sp
                         )
 
                     }
+
+
+
                     Button(
-                        onClick = {
+                        colors = ButtonDefaults.buttonColors(Color(0xFF213787)),
+                        onClick = {}, modifier = Modifier
+                            .height(50.dp)
+                            .width(160.dp),
+                        shape = RoundedCornerShape(7.dp)
+                    )
 
-                        },
-                        modifier = Modifier
-                            .size(72.dp)
-                            .background(Color.Transparent),
-                        colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.chaticon),
-                            contentDescription = "",
-                            modifier = Modifier.size(60.dp)
+                    {
+                        Text(
+                            text = "Postar nota",
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            fontSize = 15.sp
                         )
-
-                    }
-                    Button(
-                        onClick = {
-
-                        },
-                        modifier = Modifier
-                            .size(72.dp)
-                            .background(Color.Transparent),
-                        colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    ) {
                         Image(
-                            painter = painterResource(id = R.drawable.diarioicon),
+                            painter = painterResource(id = R.drawable.send),
                             contentDescription = "",
-                            modifier = Modifier.size(60.dp)
+                            modifier = Modifier.size(30.dp).offset(18.dp)
                         )
-
                     }
-                    Button(
-                        onClick = {
+                }
+            }
 
-                        },
-                        modifier = Modifier
-                            .size(72.dp)
-                            .background(Color.Transparent),
-                        colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.autoajuda),
-                            contentDescription = "",
-                            modifier = Modifier.size(60.dp)
+
+        Box(
+            modifier = Modifier
+                .height(70.dp)
+                .fillMaxWidth()
+                .background(
+                    Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFF213787),
+                            Color(0xFF245FB0),
+                            Color(0xFF6E96E8)
                         )
+                    ),
+                )
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    onClick = {
 
-                    }
-                    Button(
-                        onClick = {
+                    },
+                    modifier = Modifier
+                        .size(72.dp)
+                        .background(Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.calendarioicon),
+                        contentDescription = "",
+                        modifier = Modifier.size(60.dp)
+                    )
 
-                        },
-                        modifier = Modifier
-                            .size(72.dp)
-                            .background(Color.Transparent),
-                        colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.doacaoicon),
-                            contentDescription = "",
-                            modifier = Modifier.size(60.dp)
-                        )
+                }
+                Button(
+                    onClick = {
 
-                    }
+                    },
+                    modifier = Modifier
+                        .size(72.dp)
+                        .background(Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.chaticon),
+                        contentDescription = "",
+                        modifier = Modifier.size(60.dp)
+                    )
+
+                }
+                Button(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .size(72.dp)
+                        .background(Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.diarioicon),
+                        contentDescription = "",
+                        modifier = Modifier.size(60.dp)
+                    )
+
+                }
+                Button(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .size(72.dp)
+                        .background(Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.autoajuda),
+                        contentDescription = "",
+                        modifier = Modifier.size(60.dp)
+                    )
+
+                }
+                Button(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .size(72.dp)
+                        .background(Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.doacaoicon),
+                        contentDescription = "",
+                        modifier = Modifier.size(60.dp)
+                    )
+
                 }
             }
         }
     }
-
+    }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
-    TelaComentáriosLeitorTheme {
-
+    TelaCriarNotaTheme {
+        telaCriarNota()
     }
 }
